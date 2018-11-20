@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("bincombine")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("二进制文件合并工具")]
+[assembly: AssemblyDescription("单片机开发工具，主要将stm32的bootloader与应用程序合并为一个bin文件")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("bincombine")]
+[assembly: AssemblyProduct("二进制文件合并工具")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
