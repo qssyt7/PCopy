@@ -1,5 +1,5 @@
 # PCopy
 C#  tools
 
-1.bincombine 2½øÖÆºÏ²¢¹¤¾ß vs2008 .net3.5
+1.bincombine äºŒè¿›åˆ¶æ–‡ä»¶åˆå¹¶å·¥å…· vs2008 .net3.5
 2.
