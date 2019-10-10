@@ -8,13 +8,18 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Xml;
 
 namespace bincombine
 {
     public partial class MainFrm : Form
     {
         long file_size = 0;
+        
         uint fillvalue = 0;
+
+        string exe_path = "";
+
         private Thread combineThr;
 
         private string xml_string = 
@@ -146,7 +151,19 @@ namespace bincombine
 
         private void btnSaveList_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("功能开发中。。。");
+            return;
+        
+            SaveFileDialog saveDlg = new SaveFileDialog();
+            saveDlg.Filter = "XML文件|*.xml|所有文件|*.*";
+            saveDlg.FileName = "default.xml";
+
+            saveDlg.ShowDialog();
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(this.xml_string);
+
+
+
         }
 
         private void btnLoadList_Click(object sender, EventArgs e)
@@ -225,6 +242,11 @@ namespace bincombine
                  MessageBox.Show("合并异常!!!");
             }
 
+        }
+
+        private void MainFrm_Shown(object sender, EventArgs e)
+        {
+            exe_path = Application.StartupPath;
         }
 
     }

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clmfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmfilesize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBoxDestFile = new System.Windows.Forms.TextBox();
             this.btnTargtFile = new System.Windows.Forms.Button();
@@ -36,21 +40,17 @@
             this.btnLoadList = new System.Windows.Forms.Button();
             this.btnCombine = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSelFile = new System.Windows.Forms.Button();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.btnDelFile = new System.Windows.Forms.Button();
-            this.btnAddFile = new System.Windows.Forms.Button();
-            this.lblFileSize = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtboxFromFile = new System.Windows.Forms.TextBox();
-            this.txtBoxOffset = new System.Windows.Forms.TextBox();
-            this.rdoBtnFill1 = new System.Windows.Forms.RadioButton();
             this.rdoBtnFill0 = new System.Windows.Forms.RadioButton();
-            this.clmfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmFill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmfilesize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rdoBtnFill1 = new System.Windows.Forms.RadioButton();
+            this.txtBoxOffset = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFileSize = new System.Windows.Forms.Label();
+            this.btnAddFile = new System.Windows.Forms.Button();
+            this.btnDelFile = new System.Windows.Forms.Button();
+            this.txtboxFromFile = new System.Windows.Forms.TextBox();
+            this.btnAbout = new System.Windows.Forms.Button();
+            this.btnSelFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,41 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(784, 449);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // clmfile
+            // 
+            this.clmfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.clmfile.HeaderText = "文件名称";
+            this.clmfile.Name = "clmfile";
+            this.clmfile.ReadOnly = true;
+            this.clmfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmfile.Width = 520;
+            // 
+            // clmOffset
+            // 
+            this.clmOffset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.clmOffset.HeaderText = "偏移量（H）";
+            this.clmOffset.Name = "clmOffset";
+            this.clmOffset.ReadOnly = true;
+            this.clmOffset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmOffset.Width = 80;
+            // 
+            // clmFill
+            // 
+            this.clmFill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.clmFill.HeaderText = "填充";
+            this.clmFill.Name = "clmFill";
+            this.clmFill.ReadOnly = true;
+            this.clmFill.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmFill.Width = 80;
+            // 
+            // clmfilesize
+            // 
+            this.clmfilesize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.clmfilesize.HeaderText = "文件大小（B）";
+            this.clmfilesize.Name = "clmfilesize";
+            this.clmfilesize.ReadOnly = true;
+            this.clmfilesize.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label1
             // 
@@ -156,90 +191,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "选择要合并的BIN文件";
             // 
-            // btnSelFile
+            // rdoBtnFill0
             // 
-            this.btnSelFile.Location = new System.Drawing.Point(601, 18);
-            this.btnSelFile.Name = "btnSelFile";
-            this.btnSelFile.Size = new System.Drawing.Size(75, 24);
-            this.btnSelFile.TabIndex = 0;
-            this.btnSelFile.Text = "选择文件";
-            this.btnSelFile.UseVisualStyleBackColor = true;
-            this.btnSelFile.Click += new System.EventHandler(this.btnSelFile_Click);
-            // 
-            // btnAbout
-            // 
-            this.btnAbout.Location = new System.Drawing.Point(600, 47);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(75, 24);
-            this.btnAbout.TabIndex = 0;
-            this.btnAbout.Text = "about";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
-            // btnDelFile
-            // 
-            this.btnDelFile.Location = new System.Drawing.Point(548, 47);
-            this.btnDelFile.Name = "btnDelFile";
-            this.btnDelFile.Size = new System.Drawing.Size(51, 24);
-            this.btnDelFile.TabIndex = 0;
-            this.btnDelFile.Text = "删除";
-            this.btnDelFile.UseVisualStyleBackColor = true;
-            this.btnDelFile.Click += new System.EventHandler(this.btnDelFile_Click);
-            // 
-            // btnAddFile
-            // 
-            this.btnAddFile.Location = new System.Drawing.Point(499, 47);
-            this.btnAddFile.Name = "btnAddFile";
-            this.btnAddFile.Size = new System.Drawing.Size(46, 24);
-            this.btnAddFile.TabIndex = 0;
-            this.btnAddFile.Text = "增加";
-            this.btnAddFile.UseVisualStyleBackColor = true;
-            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
-            // 
-            // lblFileSize
-            // 
-            this.lblFileSize.AutoSize = true;
-            this.lblFileSize.Location = new System.Drawing.Point(246, 54);
-            this.lblFileSize.Name = "lblFileSize";
-            this.lblFileSize.Size = new System.Drawing.Size(83, 12);
-            this.lblFileSize.TabIndex = 1;
-            this.lblFileSize.Text = "文件大小为:0B";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "BIN文件：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 53);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "偏移量：";
-            // 
-            // txtboxFromFile
-            // 
-            this.txtboxFromFile.Location = new System.Drawing.Point(65, 20);
-            this.txtboxFromFile.Name = "txtboxFromFile";
-            this.txtboxFromFile.ReadOnly = true;
-            this.txtboxFromFile.Size = new System.Drawing.Size(531, 21);
-            this.txtboxFromFile.TabIndex = 2;
-            // 
-            // txtBoxOffset
-            // 
-            this.txtBoxOffset.Location = new System.Drawing.Point(62, 49);
-            this.txtBoxOffset.MaxLength = 8;
-            this.txtBoxOffset.Name = "txtBoxOffset";
-            this.txtBoxOffset.Size = new System.Drawing.Size(53, 21);
-            this.txtBoxOffset.TabIndex = 3;
-            this.txtBoxOffset.Text = "00000000";
-            this.txtBoxOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxOffset_KeyPress);
+            this.rdoBtnFill0.AutoSize = true;
+            this.rdoBtnFill0.Location = new System.Drawing.Point(176, 52);
+            this.rdoBtnFill0.Name = "rdoBtnFill0";
+            this.rdoBtnFill0.Size = new System.Drawing.Size(53, 16);
+            this.rdoBtnFill0.TabIndex = 4;
+            this.rdoBtnFill0.Text = "填充0";
+            this.rdoBtnFill0.UseVisualStyleBackColor = true;
             // 
             // rdoBtnFill1
             // 
@@ -253,50 +213,90 @@
             this.rdoBtnFill1.Text = "填充1";
             this.rdoBtnFill1.UseVisualStyleBackColor = true;
             // 
-            // rdoBtnFill0
+            // txtBoxOffset
             // 
-            this.rdoBtnFill0.AutoSize = true;
-            this.rdoBtnFill0.Location = new System.Drawing.Point(176, 52);
-            this.rdoBtnFill0.Name = "rdoBtnFill0";
-            this.rdoBtnFill0.Size = new System.Drawing.Size(53, 16);
-            this.rdoBtnFill0.TabIndex = 4;
-            this.rdoBtnFill0.Text = "填充0";
-            this.rdoBtnFill0.UseVisualStyleBackColor = true;
+            this.txtBoxOffset.Location = new System.Drawing.Point(62, 49);
+            this.txtBoxOffset.MaxLength = 8;
+            this.txtBoxOffset.Name = "txtBoxOffset";
+            this.txtBoxOffset.Size = new System.Drawing.Size(53, 21);
+            this.txtBoxOffset.TabIndex = 3;
+            this.txtBoxOffset.Text = "00000000";
+            this.txtBoxOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxOffset_KeyPress);
             // 
-            // clmfile
+            // label4
             // 
-            this.clmfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.clmfile.HeaderText = "文件名称";
-            this.clmfile.Name = "clmfile";
-            this.clmfile.ReadOnly = true;
-            this.clmfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmfile.Width = 520;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 53);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "偏移量：";
             // 
-            // clmOffset
+            // label3
             // 
-            this.clmOffset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.clmOffset.HeaderText = "偏移量（H）";
-            this.clmOffset.Name = "clmOffset";
-            this.clmOffset.ReadOnly = true;
-            this.clmOffset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmOffset.Width = 80;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "BIN文件：";
             // 
-            // clmFill
+            // lblFileSize
             // 
-            this.clmFill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.clmFill.HeaderText = "填充";
-            this.clmFill.Name = "clmFill";
-            this.clmFill.ReadOnly = true;
-            this.clmFill.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmFill.Width = 80;
+            this.lblFileSize.AutoSize = true;
+            this.lblFileSize.Location = new System.Drawing.Point(246, 54);
+            this.lblFileSize.Name = "lblFileSize";
+            this.lblFileSize.Size = new System.Drawing.Size(83, 12);
+            this.lblFileSize.TabIndex = 1;
+            this.lblFileSize.Text = "文件大小为:0B";
             // 
-            // clmfilesize
+            // btnAddFile
             // 
-            this.clmfilesize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.clmfilesize.HeaderText = "文件大小（B）";
-            this.clmfilesize.Name = "clmfilesize";
-            this.clmfilesize.ReadOnly = true;
-            this.clmfilesize.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.btnAddFile.Location = new System.Drawing.Point(499, 47);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(46, 24);
+            this.btnAddFile.TabIndex = 0;
+            this.btnAddFile.Text = "增加";
+            this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            // 
+            // btnDelFile
+            // 
+            this.btnDelFile.Location = new System.Drawing.Point(548, 47);
+            this.btnDelFile.Name = "btnDelFile";
+            this.btnDelFile.Size = new System.Drawing.Size(51, 24);
+            this.btnDelFile.TabIndex = 0;
+            this.btnDelFile.Text = "删除";
+            this.btnDelFile.UseVisualStyleBackColor = true;
+            this.btnDelFile.Click += new System.EventHandler(this.btnDelFile_Click);
+            // 
+            // txtboxFromFile
+            // 
+            this.txtboxFromFile.Location = new System.Drawing.Point(65, 20);
+            this.txtboxFromFile.Name = "txtboxFromFile";
+            this.txtboxFromFile.ReadOnly = true;
+            this.txtboxFromFile.Size = new System.Drawing.Size(531, 21);
+            this.txtboxFromFile.TabIndex = 2;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(600, 47);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(75, 24);
+            this.btnAbout.TabIndex = 0;
+            this.btnAbout.Text = "about";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // btnSelFile
+            // 
+            this.btnSelFile.Location = new System.Drawing.Point(601, 18);
+            this.btnSelFile.Name = "btnSelFile";
+            this.btnSelFile.Size = new System.Drawing.Size(75, 24);
+            this.btnSelFile.TabIndex = 0;
+            this.btnSelFile.Text = "选择文件";
+            this.btnSelFile.UseVisualStyleBackColor = true;
+            this.btnSelFile.Click += new System.EventHandler(this.btnSelFile_Click);
             // 
             // MainFrm
             // 
@@ -317,6 +317,7 @@
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "二进制文件合并工具";
+            this.Shown += new System.EventHandler(this.MainFrm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
