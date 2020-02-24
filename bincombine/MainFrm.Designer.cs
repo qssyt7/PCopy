@@ -51,6 +51,7 @@
             this.txtboxFromFile = new System.Windows.Forms.TextBox();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnSelFile = new System.Windows.Forms.Button();
+            this.btnFileSize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -143,7 +144,7 @@
             // 
             // btnSaveList
             // 
-            this.btnSaveList.Location = new System.Drawing.Point(715, 459);
+            this.btnSaveList.Location = new System.Drawing.Point(715, 473);
             this.btnSaveList.Name = "btnSaveList";
             this.btnSaveList.Size = new System.Drawing.Size(65, 23);
             this.btnSaveList.TabIndex = 3;
@@ -153,7 +154,7 @@
             // 
             // btnLoadList
             // 
-            this.btnLoadList.Location = new System.Drawing.Point(715, 486);
+            this.btnLoadList.Location = new System.Drawing.Point(715, 498);
             this.btnLoadList.Name = "btnLoadList";
             this.btnLoadList.Size = new System.Drawing.Size(65, 23);
             this.btnLoadList.TabIndex = 3;
@@ -298,11 +299,22 @@
             this.btnSelFile.UseVisualStyleBackColor = true;
             this.btnSelFile.Click += new System.EventHandler(this.btnSelFile_Click);
             // 
+            // btnFileSize
+            // 
+            this.btnFileSize.Location = new System.Drawing.Point(715, 450);
+            this.btnFileSize.Name = "btnFileSize";
+            this.btnFileSize.Size = new System.Drawing.Size(65, 23);
+            this.btnFileSize.TabIndex = 5;
+            this.btnFileSize.Text = "文件大小";
+            this.btnFileSize.UseVisualStyleBackColor = true;
+            this.btnFileSize.Click += new System.EventHandler(this.btnFileSize_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.btnFileSize);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCombine);
             this.Controls.Add(this.btnLoadList);
@@ -351,6 +363,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOffset;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFill;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmfilesize;
+        private System.Windows.Forms.Button btnFileSize;
     }
 }
 
