@@ -26,9 +26,19 @@ namespace PCopy
         private void btnRootPath_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fldDlg = new FolderBrowserDialog();
-            fldDlg.ShowDialog();
+            ;
 
-            this.txtBoxRootPath.Text = fldDlg.SelectedPath;
+            if (fldDlg.ShowDialog() == DialogResult.OK)
+            {
+                this.txtBoxRootPath.Text = fldDlg.SelectedPath;
+
+                this.groupBox1.Enabled = true;
+            }
+            else
+            {
+                this.txtBoxRootPath.Text = string.Empty;
+                this.groupBox1.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -95,6 +105,33 @@ namespace PCopy
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+            if (this.txtBoxSrcFile.Text.Trim().Length <= 0)
+            {
+                MessageBox.Show("请指定[源文件]路径!!!");
+                return;
+            }
+
+            if (this.txtBoxSrcFile.Text.Trim().Length <= 0)
+            {
+                MessageBox.Show("请指定[复制到]路径!!!");
+                return;
+            }
+
+            int no = 1;
+
+            this.dataGridView1.Rows.Add();
+
+            this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[1].Value
+                 = this.txtBoxSrcFile.Text.Trim();
+
+            this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[2].Value
+                = this.txtBoxTargetFile.Text.Trim();
+
+            foreach (DataGridViewRow tmpRow in this.dataGridView1.Rows)
+            {
+                tmpRow.Cells[0].Value = no.ToString();
+                no ++;
+            }
         }
 
         /// <summary>
@@ -104,7 +141,12 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("请先选择要删除的行!!!");
 
+                return;
+            }
         }
 
         /// <summary>
@@ -114,7 +156,12 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("请先选择要修改的行!!!");
 
+                return;
+            }
         }
 
         /// <summary>
@@ -124,7 +171,12 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnFileCopy_Click(object sender, EventArgs e)
         {
-
+            if (this.dataGridView1.Rows.Count <= 0)
+            {
+                MessageBox.Show("请先编辑复制文件的对应列表!!!");
+                
+                return;
+            }
         }
 
         /// <summary>

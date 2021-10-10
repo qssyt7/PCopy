@@ -106,15 +106,16 @@
             // txtBoxSrcFile
             // 
             this.txtBoxSrcFile.Location = new System.Drawing.Point(3, 35);
+            this.txtBoxSrcFile.Multiline = true;
             this.txtBoxSrcFile.Name = "txtBoxSrcFile";
             this.txtBoxSrcFile.ReadOnly = true;
-            this.txtBoxSrcFile.Size = new System.Drawing.Size(195, 21);
+            this.txtBoxSrcFile.Size = new System.Drawing.Size(195, 92);
             this.txtBoxSrcFile.TabIndex = 2;
             this.txtBoxSrcFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnSrcFile
             // 
-            this.btnSrcFile.Location = new System.Drawing.Point(123, 62);
+            this.btnSrcFile.Location = new System.Drawing.Point(120, 133);
             this.btnSrcFile.Name = "btnSrcFile";
             this.btnSrcFile.Size = new System.Drawing.Size(75, 23);
             this.btnSrcFile.TabIndex = 3;
@@ -124,7 +125,7 @@
             // 
             // btnCopyTo
             // 
-            this.btnCopyTo.Location = new System.Drawing.Point(126, 146);
+            this.btnCopyTo.Location = new System.Drawing.Point(120, 285);
             this.btnCopyTo.Name = "btnCopyTo";
             this.btnCopyTo.Size = new System.Drawing.Size(75, 23);
             this.btnCopyTo.TabIndex = 6;
@@ -134,15 +135,16 @@
             // 
             // txtBoxTargetFile
             // 
-            this.txtBoxTargetFile.Location = new System.Drawing.Point(6, 119);
+            this.txtBoxTargetFile.Location = new System.Drawing.Point(6, 201);
+            this.txtBoxTargetFile.Multiline = true;
             this.txtBoxTargetFile.Name = "txtBoxTargetFile";
-            this.txtBoxTargetFile.Size = new System.Drawing.Size(195, 21);
+            this.txtBoxTargetFile.Size = new System.Drawing.Size(195, 78);
             this.txtBoxTargetFile.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 104);
+            this.label2.Location = new System.Drawing.Point(7, 181);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 4;
@@ -159,16 +161,17 @@
             this.groupBox1.Controls.Add(this.txtBoxSrcFile);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnSrcFile);
-            this.groupBox1.Location = new System.Drawing.Point(744, 102);
+            this.groupBox1.Enabled = false;
+            this.groupBox1.Location = new System.Drawing.Point(744, 115);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 227);
+            this.groupBox1.Size = new System.Drawing.Size(207, 368);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文件";
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(138, 190);
+            this.btnEdit.Location = new System.Drawing.Point(132, 329);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(45, 23);
             this.btnEdit.TabIndex = 9;
@@ -178,7 +181,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(77, 190);
+            this.btnDel.Location = new System.Drawing.Point(71, 329);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(45, 23);
             this.btnDel.TabIndex = 8;
@@ -188,7 +191,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(16, 190);
+            this.btnAdd.Location = new System.Drawing.Point(10, 329);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(45, 23);
             this.btnAdd.TabIndex = 7;
@@ -208,14 +211,15 @@
             // txtBoxRootPath
             // 
             this.txtBoxRootPath.Location = new System.Drawing.Point(743, 29);
+            this.txtBoxRootPath.Multiline = true;
             this.txtBoxRootPath.Name = "txtBoxRootPath";
             this.txtBoxRootPath.ReadOnly = true;
-            this.txtBoxRootPath.Size = new System.Drawing.Size(204, 21);
+            this.txtBoxRootPath.Size = new System.Drawing.Size(204, 43);
             this.txtBoxRootPath.TabIndex = 9;
             // 
             // btnRootPath
             // 
-            this.btnRootPath.Location = new System.Drawing.Point(876, 56);
+            this.btnRootPath.Location = new System.Drawing.Point(876, 78);
             this.btnRootPath.Name = "btnRootPath";
             this.btnRootPath.Size = new System.Drawing.Size(75, 23);
             this.btnRootPath.TabIndex = 10;
@@ -225,7 +229,7 @@
             // 
             // btnFileCopy
             // 
-            this.btnFileCopy.Location = new System.Drawing.Point(747, 358);
+            this.btnFileCopy.Location = new System.Drawing.Point(747, 494);
             this.btnFileCopy.Name = "btnFileCopy";
             this.btnFileCopy.Size = new System.Drawing.Size(204, 73);
             this.btnFileCopy.TabIndex = 11;
@@ -235,7 +239,7 @@
             // 
             // btnSaveXml
             // 
-            this.btnSaveXml.Location = new System.Drawing.Point(862, 485);
+            this.btnSaveXml.Location = new System.Drawing.Point(872, 573);
             this.btnSaveXml.Name = "btnSaveXml";
             this.btnSaveXml.Size = new System.Drawing.Size(75, 23);
             this.btnSaveXml.TabIndex = 12;
@@ -245,7 +249,7 @@
             // 
             // btnReadXml
             // 
-            this.btnReadXml.Location = new System.Drawing.Point(862, 514);
+            this.btnReadXml.Location = new System.Drawing.Point(872, 602);
             this.btnReadXml.Name = "btnReadXml";
             this.btnReadXml.Size = new System.Drawing.Size(75, 23);
             this.btnReadXml.TabIndex = 13;
