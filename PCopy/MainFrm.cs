@@ -200,5 +200,34 @@ namespace PCopy
 
         }
 
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnST_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnALLST_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnALLTS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCompare_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
