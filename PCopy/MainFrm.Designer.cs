@@ -159,7 +159,7 @@
             // 
             // btnSaveXml
             // 
-            this.btnSaveXml.Location = new System.Drawing.Point(777, 617);
+            this.btnSaveXml.Location = new System.Drawing.Point(764, 617);
             this.btnSaveXml.Name = "btnSaveXml";
             this.btnSaveXml.Size = new System.Drawing.Size(75, 23);
             this.btnSaveXml.TabIndex = 12;
@@ -169,7 +169,7 @@
             // 
             // btnReadXml
             // 
-            this.btnReadXml.Location = new System.Drawing.Point(859, 617);
+            this.btnReadXml.Location = new System.Drawing.Point(864, 617);
             this.btnReadXml.Name = "btnReadXml";
             this.btnReadXml.Size = new System.Drawing.Size(75, 23);
             this.btnReadXml.TabIndex = 13;

@@ -26,7 +26,6 @@ namespace PCopy
         private void btnRootPath_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fldDlg = new FolderBrowserDialog();
-            ;
 
             if (fldDlg.ShowDialog() == DialogResult.OK)
             {
