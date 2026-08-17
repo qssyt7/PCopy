@@ -200,31 +200,59 @@ namespace PCopy
 
         }
 
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainFrm_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 源文件->目标文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnST_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 目标文件->源文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTS_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 源文件->所有目标文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnALLST_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 所有目标文件->源文件
+        /// </summary>
         private void btnALLTS_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 比较 当前文件与目标文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCompare_Click(object sender, EventArgs e)
         {
 
