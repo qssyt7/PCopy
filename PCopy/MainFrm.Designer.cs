@@ -38,13 +38,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSaveXml = new System.Windows.Forms.Button();
             this.btnReadXml = new System.Windows.Forms.Button();
-            this.ColumnFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrcLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrcFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBoxTargetFile = new System.Windows.Forms.TextBox();
             this.btnCopyTo = new System.Windows.Forms.Button();
@@ -52,11 +45,18 @@
             this.btnRootPath = new System.Windows.Forms.Button();
             this.txtBoxRootPath = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnST = new System.Windows.Forms.Button();
-            this.btnTS = new System.Windows.Forms.Button();
+            this.btnCompare = new System.Windows.Forms.Button();
             this.btnALLTS = new System.Windows.Forms.Button();
             this.btnALLST = new System.Windows.Forms.Button();
-            this.btnCompare = new System.Windows.Forms.Button();
+            this.btnTS = new System.Windows.Forms.Button();
+            this.btnST = new System.Windows.Forms.Button();
+            this.ColumnFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrcLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrcFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -177,65 +177,6 @@
             this.btnReadXml.UseVisualStyleBackColor = true;
             this.btnReadXml.Click += new System.EventHandler(this.btnReadXml_Click);
             // 
-            // ColumnFile
-            // 
-            this.ColumnFile.Frozen = true;
-            this.ColumnFile.HeaderText = "序号";
-            this.ColumnFile.MinimumWidth = 10;
-            this.ColumnFile.Name = "ColumnFile";
-            this.ColumnFile.ReadOnly = true;
-            this.ColumnFile.Width = 60;
-            // 
-            // ColumnSrc
-            // 
-            this.ColumnSrc.Frozen = true;
-            this.ColumnSrc.HeaderText = "当前文件";
-            this.ColumnSrc.MinimumWidth = 10;
-            this.ColumnSrc.Name = "ColumnSrc";
-            this.ColumnSrc.ReadOnly = true;
-            this.ColumnSrc.Width = 120;
-            // 
-            // ColumnSrcLastTime
-            // 
-            this.ColumnSrcLastTime.Frozen = true;
-            this.ColumnSrcLastTime.HeaderText = "S最后时间";
-            this.ColumnSrcLastTime.MinimumWidth = 10;
-            this.ColumnSrcLastTime.Name = "ColumnSrcLastTime";
-            this.ColumnSrcLastTime.ReadOnly = true;
-            // 
-            // ColumnSrcFileSize
-            // 
-            this.ColumnSrcFileSize.Frozen = true;
-            this.ColumnSrcFileSize.HeaderText = "S大小";
-            this.ColumnSrcFileSize.MinimumWidth = 10;
-            this.ColumnSrcFileSize.Name = "ColumnSrcFileSize";
-            this.ColumnSrcFileSize.ReadOnly = true;
-            this.ColumnSrcFileSize.Width = 80;
-            // 
-            // ColumnTarget
-            // 
-            this.ColumnTarget.Frozen = true;
-            this.ColumnTarget.HeaderText = "目标文件";
-            this.ColumnTarget.MinimumWidth = 10;
-            this.ColumnTarget.Name = "ColumnTarget";
-            this.ColumnTarget.ReadOnly = true;
-            this.ColumnTarget.Width = 120;
-            // 
-            // ColumnTLastTime
-            // 
-            this.ColumnTLastTime.HeaderText = "T最后时间";
-            this.ColumnTLastTime.MinimumWidth = 10;
-            this.ColumnTLastTime.Name = "ColumnTLastTime";
-            this.ColumnTLastTime.ReadOnly = true;
-            // 
-            // ColumnTFileSize
-            // 
-            this.ColumnTFileSize.HeaderText = "T大小";
-            this.ColumnTFileSize.MinimumWidth = 10;
-            this.ColumnTFileSize.Name = "ColumnTFileSize";
-            this.ColumnTFileSize.ReadOnly = true;
-            this.ColumnTFileSize.Width = 80;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtBoxTargetFile);
@@ -308,25 +249,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "复制";
             // 
-            // btnST
+            // btnCompare
             // 
-            this.btnST.Location = new System.Drawing.Point(19, 32);
-            this.btnST.Name = "btnST";
-            this.btnST.Size = new System.Drawing.Size(75, 23);
-            this.btnST.TabIndex = 0;
-            this.btnST.Text = "S->T";
-            this.btnST.UseVisualStyleBackColor = true;
-            this.btnST.Click += new System.EventHandler(this.btnST_Click);
-            // 
-            // btnTS
-            // 
-            this.btnTS.Location = new System.Drawing.Point(119, 32);
-            this.btnTS.Name = "btnTS";
-            this.btnTS.Size = new System.Drawing.Size(75, 23);
-            this.btnTS.TabIndex = 1;
-            this.btnTS.Text = "S<-T";
-            this.btnTS.UseVisualStyleBackColor = true;
-            this.btnTS.Click += new System.EventHandler(this.btnTS_Click);
+            this.btnCompare.Location = new System.Drawing.Point(19, 120);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(75, 23);
+            this.btnCompare.TabIndex = 4;
+            this.btnCompare.Text = "对比";
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
             // 
             // btnALLTS
             // 
@@ -348,15 +279,90 @@
             this.btnALLST.UseVisualStyleBackColor = true;
             this.btnALLST.Click += new System.EventHandler(this.btnALLST_Click);
             // 
-            // btnCompare
+            // btnTS
             // 
-            this.btnCompare.Location = new System.Drawing.Point(19, 120);
-            this.btnCompare.Name = "btnCompare";
-            this.btnCompare.Size = new System.Drawing.Size(75, 23);
-            this.btnCompare.TabIndex = 4;
-            this.btnCompare.Text = "对比";
-            this.btnCompare.UseVisualStyleBackColor = true;
-            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
+            this.btnTS.Location = new System.Drawing.Point(119, 32);
+            this.btnTS.Name = "btnTS";
+            this.btnTS.Size = new System.Drawing.Size(75, 23);
+            this.btnTS.TabIndex = 1;
+            this.btnTS.Text = "S<-T";
+            this.btnTS.UseVisualStyleBackColor = true;
+            this.btnTS.Click += new System.EventHandler(this.btnTS_Click);
+            // 
+            // btnST
+            // 
+            this.btnST.Location = new System.Drawing.Point(19, 32);
+            this.btnST.Name = "btnST";
+            this.btnST.Size = new System.Drawing.Size(75, 23);
+            this.btnST.TabIndex = 0;
+            this.btnST.Text = "S->T";
+            this.btnST.UseVisualStyleBackColor = true;
+            this.btnST.Click += new System.EventHandler(this.btnST_Click);
+            // 
+            // ColumnFile
+            // 
+            this.ColumnFile.Frozen = true;
+            this.ColumnFile.HeaderText = "序号";
+            this.ColumnFile.MinimumWidth = 10;
+            this.ColumnFile.Name = "ColumnFile";
+            this.ColumnFile.ReadOnly = true;
+            this.ColumnFile.Width = 60;
+            // 
+            // ColumnSrc
+            // 
+            this.ColumnSrc.DataPropertyName = "SrcFile";
+            this.ColumnSrc.Frozen = true;
+            this.ColumnSrc.HeaderText = "当前文件";
+            this.ColumnSrc.MinimumWidth = 10;
+            this.ColumnSrc.Name = "ColumnSrc";
+            this.ColumnSrc.ReadOnly = true;
+            this.ColumnSrc.Width = 120;
+            // 
+            // ColumnSrcLastTime
+            // 
+            this.ColumnSrcLastTime.DataPropertyName = "SrcLastTime";
+            this.ColumnSrcLastTime.Frozen = true;
+            this.ColumnSrcLastTime.HeaderText = "S最后时间";
+            this.ColumnSrcLastTime.MinimumWidth = 10;
+            this.ColumnSrcLastTime.Name = "ColumnSrcLastTime";
+            this.ColumnSrcLastTime.ReadOnly = true;
+            // 
+            // ColumnSrcFileSize
+            // 
+            this.ColumnSrcFileSize.DataPropertyName = "SrcFileSize";
+            this.ColumnSrcFileSize.Frozen = true;
+            this.ColumnSrcFileSize.HeaderText = "S大小";
+            this.ColumnSrcFileSize.MinimumWidth = 10;
+            this.ColumnSrcFileSize.Name = "ColumnSrcFileSize";
+            this.ColumnSrcFileSize.ReadOnly = true;
+            this.ColumnSrcFileSize.Width = 80;
+            // 
+            // ColumnTarget
+            // 
+            this.ColumnTarget.DataPropertyName = "TargetFile";
+            this.ColumnTarget.Frozen = true;
+            this.ColumnTarget.HeaderText = "目标文件";
+            this.ColumnTarget.MinimumWidth = 10;
+            this.ColumnTarget.Name = "ColumnTarget";
+            this.ColumnTarget.ReadOnly = true;
+            this.ColumnTarget.Width = 120;
+            // 
+            // ColumnTLastTime
+            // 
+            this.ColumnTLastTime.DataPropertyName = "TLastTime";
+            this.ColumnTLastTime.HeaderText = "T最后时间";
+            this.ColumnTLastTime.MinimumWidth = 10;
+            this.ColumnTLastTime.Name = "ColumnTLastTime";
+            this.ColumnTLastTime.ReadOnly = true;
+            // 
+            // ColumnTFileSize
+            // 
+            this.ColumnTFileSize.DataPropertyName = "TFileSize";
+            this.ColumnTFileSize.HeaderText = "T大小";
+            this.ColumnTFileSize.MinimumWidth = 10;
+            this.ColumnTFileSize.Name = "ColumnTFileSize";
+            this.ColumnTFileSize.ReadOnly = true;
+            this.ColumnTFileSize.Width = 80;
             // 
             // MainFrm
             // 
@@ -404,13 +410,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSaveXml;
         private System.Windows.Forms.Button btnReadXml;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrcLastTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrcFileSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTarget;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTLastTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTFileSize;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtBoxTargetFile;
         private System.Windows.Forms.Button btnCopyTo;
@@ -423,6 +422,13 @@
         private System.Windows.Forms.Button btnALLTS;
         private System.Windows.Forms.Button btnALLST;
         private System.Windows.Forms.Button btnCompare;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrcLastTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSrcFileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTarget;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTLastTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTFileSize;
     }
 }
 
