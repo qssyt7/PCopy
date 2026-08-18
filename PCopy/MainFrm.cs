@@ -81,7 +81,7 @@ namespace PCopy
                     copyFileModel.listID = i + 1;
                     copyFileModel.SrcFile = fileList[i];
                     copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
-                    copyFileModel.SrcFileSize = (int)new FileInfo(copyFileModel.SrcFile).Length;
+                    copyFileModel.SrcFileSize = new FileInfo(copyFileModel.SrcFile).Length;
                     this.copyFileList.Add(copyFileModel);
                 }
 
@@ -130,7 +130,7 @@ namespace PCopy
                 if (File.Exists(currentCopyFile.TargetFile))
                 {
                     currentCopyFile.TLastTime = File.GetLastWriteTime(currentCopyFile.TargetFile).ToString();
-                    currentCopyFile.TFileSize = (int)new FileInfo(currentCopyFile.TargetFile).Length;
+                    currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
                 }
 
                 this.bindingSourceDGV1.ResetBindings(false);
@@ -172,10 +172,10 @@ namespace PCopy
             copyFileModel.listID = this.dataGridView1.Rows.Count + 1;
             copyFileModel.SrcFile = this.txtBoxSrcFile.Text.Trim();
             copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
-            copyFileModel.SrcFileSize = (int)new FileInfo(copyFileModel.SrcFile).Length;
+            copyFileModel.SrcFileSize = new FileInfo(copyFileModel.SrcFile).Length;
             copyFileModel.TargetFile = this.txtBoxTargetFile.Text.Trim();
             copyFileModel.TLastTime = File.GetLastWriteTime(copyFileModel.TargetFile).ToString();
-            copyFileModel.TFileSize = (int)new FileInfo(copyFileModel.TargetFile).Length;
+            copyFileModel.TFileSize = new FileInfo(copyFileModel.TargetFile).Length;
             this.copyFileList.Add(copyFileModel);
             this.bindingSourceDGV1.ResetBindings(false);
         }
