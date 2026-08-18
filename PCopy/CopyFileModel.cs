@@ -16,32 +16,32 @@ namespace PCopy
         /// <summary>
         /// 源文件
         /// </summary>
-        public string srcFile { get; set; }
+        public string SrcFile { get; set; }
 
         /// <summary>
         /// 源文件最后修改时间
         /// </summary>
-        public string srcLastTime { get; set; }
+        public string SrcLastTime { get; set; }
 
         /// <summary>
         /// 源文件大小
         /// </summary>
-        public string srcFileSize { get; set; }
+        public int SrcFileSize { get; set; }
     
         /// <summary>
         /// 目标文件
         /// </summary>
-        public string targetFile { get; set; }
+        public string TargetFile { get; set; }
 
         /// <summary>
         /// 目标文件最后修改时间
         /// </summary>
-        public string targetLastTime { get; set; }
+        public string TLastTime { get; set; }
 
         /// <summary>
         /// 目标文件大小
         /// </summary>
-        public string targetFileSize { get; set; }
+        public int TFileSize { get; set; }
 
     }
 }

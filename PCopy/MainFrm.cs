@@ -9,13 +9,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-
 namespace PCopy
 {
     public partial class MainFrm : Form
     {
-
-        string exe_path = "";
+        private string exe_path = "";
 
         private string xml_string =
     "<?xml version=\"1.0\" encoding=\"utf-8\"?> " +
@@ -27,6 +25,31 @@ namespace PCopy
             "<fillsize>1</fillsize>" +
         "</fromfile>" +
     "</bincombine> ";
+
+        /// <summary>
+        /// 文件列表
+        /// </summary>
+        private List<CopyFileModel> copyFileList = new List<CopyFileModel>();
+
+        /// <summary>
+        /// 当前的复制文件
+        /// </summary>
+        private CopyFileModel currentCopyFile = null;
+
+        /// <summary>
+        /// 当前路径
+        /// </summary>
+        private string currentPath = string.Empty;
+
+        /// <summary>
+        /// 目标路径
+        /// </summary>
+        private string targetPath = string.Empty;
+
+        // <summary>
+        /// 绑定数据源
+        /// </summary>
+        private BindingSource bindingSourceDGV1 = new BindingSource();
 
         public MainFrm()
         {
@@ -46,12 +69,27 @@ namespace PCopy
             {
                 this.txtBoxRootPath.Text = fldDlg.SelectedPath;
 
-                this.groupBox1.Enabled = true;
+                currentPath = fldDlg.SelectedPath;
+
+                copyFileList.Clear();
+
+                // 获取currentPath目录下的所有文件
+                string[] fileList = Directory.GetFiles(currentPath);
+                for (int i = 0; i < fileList.Length; i++)
+                {
+                    CopyFileModel copyFileModel = new CopyFileModel();
+                    copyFileModel.listID = i + 1;
+                    copyFileModel.SrcFile = fileList[i];
+                    copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
+                    copyFileModel.SrcFileSize = (int)new FileInfo(copyFileModel.SrcFile).Length;
+                    this.copyFileList.Add(copyFileModel);
+                }
+
+                this.bindingSourceDGV1.ResetBindings(false);
             }
             else
             {
                 this.txtBoxRootPath.Text = string.Empty;
-                this.groupBox1.Enabled = false;
             }
         }
 
@@ -67,8 +105,6 @@ namespace PCopy
 
             this.txtBoxSrcFile.Text = openDlg.FileName;
             this.txtBoxTargetFile.Text = Path.GetFileName(openDlg.FileName);
-           
-            
         }
 
         /// <summary>
@@ -81,33 +117,23 @@ namespace PCopy
             SaveFileDialog saveDlg = new SaveFileDialog();
             saveDlg.RestoreDirectory = true;
             saveDlg.InitialDirectory = this.txtBoxRootPath.Text;
-            saveDlg.FileName = this.txtBoxTargetFile.Text;
+
+            // 获取文件名
+            saveDlg.FileName = Path.GetFileName(currentCopyFile.SrcFile);
 
             this.txtBoxTargetFile.Text = string.Empty;
 
             if (saveDlg.ShowDialog() == DialogResult.OK)
             {
-
-                if (this.txtBoxTargetFile.Text.Trim().Length > 0)
+                this.txtBoxTargetFile.Text = saveDlg.FileName;
+                currentCopyFile.TargetFile = saveDlg.FileName;
+                if (File.Exists(currentCopyFile.TargetFile))
                 {
-
-                    this.txtBoxTargetFile.Text = saveDlg.FileName;
-
+                    currentCopyFile.TLastTime = File.GetLastWriteTime(currentCopyFile.TargetFile).ToString();
+                    currentCopyFile.TFileSize = (int)new FileInfo(currentCopyFile.TargetFile).Length;
                 }
-                else
-                {
-                    if (saveDlg.FileName.IndexOf(this.txtBoxRootPath.Text.Trim()) >= 0)
-                    {
 
-                        this.txtBoxTargetFile.Text =  Path.GetFileName(saveDlg.FileName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("选择的目录，不是根目录的子目录。");
-
-                        this.txtBoxTargetFile.Text = Path.GetFileName(saveDlg.FileName);
-                    }
-                }
+                this.bindingSourceDGV1.ResetBindings(false);
             }
         }
 
@@ -118,7 +144,6 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
             if (this.txtBoxSrcFile.Text.Trim().Length <= 0)
             {
                 MessageBox.Show("请指定[源文件]路径!!!");
@@ -131,21 +156,28 @@ namespace PCopy
                 return;
             }
 
-            int no = 1;
-
-            this.dataGridView1.Rows.Add();
-
-            this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[1].Value
-                 = this.txtBoxSrcFile.Text.Trim();
-
-            this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[2].Value
-                = this.txtBoxTargetFile.Text.Trim();
-
-            foreach (DataGridViewRow tmpRow in this.dataGridView1.Rows)
+            if (File.Exists(this.txtBoxSrcFile.Text.Trim()) == false)
             {
-                tmpRow.Cells[0].Value = no.ToString();
-                no ++;
+                MessageBox.Show("[当前文件]不存在!!!");
+                return;
             }
+
+            if (File.Exists(this.txtBoxTargetFile.Text.Trim()) == false)
+            {
+                MessageBox.Show("[目标文件]不存在!!!");
+                return;
+            }
+
+            CopyFileModel copyFileModel = new CopyFileModel();
+            copyFileModel.listID = this.dataGridView1.Rows.Count + 1;
+            copyFileModel.SrcFile = this.txtBoxSrcFile.Text.Trim();
+            copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
+            copyFileModel.SrcFileSize = (int)new FileInfo(copyFileModel.SrcFile).Length;
+            copyFileModel.TargetFile = this.txtBoxTargetFile.Text.Trim();
+            copyFileModel.TLastTime = File.GetLastWriteTime(copyFileModel.TargetFile).ToString();
+            copyFileModel.TFileSize = (int)new FileInfo(copyFileModel.TargetFile).Length;
+            this.copyFileList.Add(copyFileModel);
+            this.bindingSourceDGV1.ResetBindings(false);
         }
 
         /// <summary>
@@ -188,7 +220,7 @@ namespace PCopy
             if (this.dataGridView1.Rows.Count <= 0)
             {
                 MessageBox.Show("请先编辑复制文件的对应列表!!!");
-                
+
                 return;
             }
         }
@@ -200,8 +232,6 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnSaveXml_Click(object sender, EventArgs e)
         {
-
-
             if (this.dataGridView1.Rows.Count <= 0)
             {
                 MessageBox.Show("请先添加文件", "提示");
@@ -218,7 +248,6 @@ namespace PCopy
 
             try
             {
-
                 XmlDocument xml = new XmlDocument();
 
                 if (File.Exists(xml_path))
@@ -227,7 +256,6 @@ namespace PCopy
                 }
                 else
                 {
-
                     xml.LoadXml(this.xml_string);
                 }
 
@@ -267,9 +295,7 @@ namespace PCopy
             {
                 MessageBox.Show(ex.StackTrace.ToString(), "异常");
             }
-
         }
-
 
         /// <summary>
         /// 读取列表
@@ -296,7 +322,6 @@ namespace PCopy
                     return;
                 }
 
-
                 XmlElement xmlRoot = xml.DocumentElement;
 
                 foreach (XmlNode node in xmlRoot.ChildNodes)
@@ -307,18 +332,14 @@ namespace PCopy
                     this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[1].Value = node["offset"].InnerText;
                     this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[2].Value = node["fillvalue"].InnerText;
                     this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[3].Value = node["fillsize"].InnerText;
-
                 }
 
                 // this.txtBoxDestFile.Text = Path.Combine(exe_path, string.Format("bin_release_{0}.bin", DateTime.Now.ToString("yyyyMMddHHmmss")));
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.StackTrace.ToString(), "异常");
-
             }
-
         }
 
         /// <summary>
@@ -338,7 +359,6 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnST_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -348,7 +368,6 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnTS_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -358,7 +377,6 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnALLST_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -366,7 +384,6 @@ namespace PCopy
         /// </summary>
         private void btnALLTS_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -376,7 +393,74 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnCompare_Click(object sender, EventArgs e)
         {
+        }
 
+        /// <summary>
+        /// 选择行变化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count > 0)
+            {
+                currentCopyFile = (CopyFileModel)this.dataGridView1.SelectedRows[0].DataBoundItem;
+
+                this.txtBoxSrcFile.Text = currentCopyFile.SrcFile;
+                this.txtBoxTargetFile.Text = currentCopyFile.TargetFile;
+            }
+        }
+
+        private void MainFrm_Shown(object sender, EventArgs e)
+        {
+            copyFileList.Add(new CopyFileModel()
+            {
+                listID = 1,
+                SrcFile = "C:\\1.bin",
+                SrcLastTime = "2018-01-01 00:00:00",
+                SrcFileSize = 1024,
+                TargetFile = "C:\\2.bin",
+                TLastTime = "2018-01-01 00:00:00",
+                TFileSize = 1024
+            }
+                );
+            bindingSourceDGV1.DataSource = this.copyFileList;
+            this.dataGridView1.DataSource = bindingSourceDGV1;
+            bindingSourceDGV1.ResetBindings(false);
+        }
+
+        /// <summary>
+        /// 刷新 文件信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnTargetPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fldDlg = new FolderBrowserDialog();
+
+            if (fldDlg.ShowDialog() == DialogResult.OK)
+            {
+                this.txtBoxTargetPath.Text = fldDlg.SelectedPath;
+                targetPath = fldDlg.SelectedPath;
+
+                foreach (var item in this.copyFileList)
+                {
+                    if (string.IsNullOrEmpty(item.TargetFile))
+                    {
+                        item.TargetFile = Path.Combine(targetPath, Path.GetFileName(item.SrcFile));
+                    }
+                }
+
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
+            else
+            {
+                this.txtBoxTargetPath.Text = string.Empty;
+            }
         }
     }
 }
