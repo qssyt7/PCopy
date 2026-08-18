@@ -26,7 +26,7 @@ namespace PCopy
         /// <summary>
         /// 源文件大小
         /// </summary>
-        public int SrcFileSize { get; set; }
+        public long SrcFileSize { get; set; }
     
         /// <summary>
         /// 目标文件
@@ -41,7 +41,7 @@ namespace PCopy
         /// <summary>
         /// 目标文件大小
         /// </summary>
-        public int TFileSize { get; set; }
+        public long TFileSize { get; set; }
 
     }
 }

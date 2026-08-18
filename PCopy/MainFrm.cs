@@ -436,6 +436,18 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if (File.Exists(currentCopyFile.SrcFile))
+            {
+                currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
+                currentCopyFile.SrcLastTime = new FileInfo(currentCopyFile.SrcFile).LastWriteTime.ToString();
+            }
+
+            if (File.Exists(currentCopyFile.TargetFile))
+            {
+                currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
+                currentCopyFile.TLastTime = new FileInfo(currentCopyFile.TargetFile).LastWriteTime.ToString();
+            }
+
         }
 
         private void btnTargetPath_Click(object sender, EventArgs e)
