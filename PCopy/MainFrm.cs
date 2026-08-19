@@ -549,12 +549,12 @@ namespace PCopy
 
                     currentCopyFile = item;
 
-                    File.Copy(item.TargetFile, item.SrcFile);
+                    File.Copy(item.SrcFile, item.TargetFile);
 
                     currentCopyFile.Status = "已复制";
 
-                    currentCopyFile.SrcLastTime = File.GetLastWriteTime(item.SrcFile).ToString();
-                    currentCopyFile.SrcFileSize = new FileInfo(item.SrcFile).Length;
+                    currentCopyFile.TLastTime = File.GetLastWriteTime(item.TargetFile).ToString();
+                    currentCopyFile.TFileSize = new FileInfo(item.TargetFile).Length;
                 }
 
                 MessageBox.Show("复制成功", "提示");
@@ -609,12 +609,12 @@ namespace PCopy
 
                     currentCopyFile = item;
 
-                    File.Copy(item.SrcFile, item.TargetFile);
+                    File.Copy(item.TargetFile, item.SrcFile);
 
                     currentCopyFile.Status = "已复制";
 
-                    currentCopyFile.TLastTime = File.GetLastWriteTime(item.TargetFile).ToString();
-                    currentCopyFile.TFileSize = new FileInfo(item.TargetFile).Length;
+                    currentCopyFile.SrcLastTime = File.GetLastWriteTime(item.SrcFile).ToString();
+                    currentCopyFile.SrcFileSize = new FileInfo(item.SrcFile).Length;
                 }
 
                 MessageBox.Show("复制成功", "提示");
