@@ -305,27 +305,38 @@ namespace PCopy
                 XmlElement xmlRoot = xml.DocumentElement;
                 xmlRoot.RemoveAll();
 
-                foreach (DataGridViewRow tmpRow in this.dataGridView1.Rows)
+                foreach (var item in this.copyFileList)
                 {
                     XmlElement copyFile = xml.CreateElement("copyfile");
 
-                    XmlElement filename = xml.CreateElement("filename");
+                    XmlElement listID = xml.CreateElement("listID");
+                    listID.InnerText = item.listID.ToString();
 
-                    filename.InnerText = Path.GetFileName(Convert.ToString(tmpRow.Cells[0].Value));
+                    XmlElement SrcFile = xml.CreateElement("SrcFile");
+                    SrcFile.InnerText = item.SrcFile;
 
-                    XmlElement offset = xml.CreateElement("offset");
-                    offset.InnerText = Convert.ToString(tmpRow.Cells[1].Value);
+                    XmlElement SrcLastTime = xml.CreateElement("SrcLastTime");
+                    SrcLastTime.InnerText = item.SrcLastTime;
 
-                    XmlElement fillvalue = xml.CreateElement("fillvalue");
-                    fillvalue.InnerText = Convert.ToString(tmpRow.Cells[2].Value);
+                    XmlElement SrcFileSize = xml.CreateElement("SrcFileSize");
+                    SrcFileSize.InnerText = item.SrcFileSize.ToString();
 
-                    XmlElement fillsize = xml.CreateElement("fillsize");
-                    fillsize.InnerText = Convert.ToString(tmpRow.Cells[3].Value);
+                    XmlElement TargetFile = xml.CreateElement("TargetFile");
+                    TargetFile.InnerText = item.TargetFile;
 
-                    copyFile.AppendChild(filename);
-                    copyFile.AppendChild(offset);
-                    copyFile.AppendChild(fillvalue);
-                    copyFile.AppendChild(fillsize);
+                    XmlElement TLastTime = xml.CreateElement("TLastTime");
+                    TLastTime.InnerText = item.TLastTime;
+
+                    XmlElement TFileSize = xml.CreateElement("TFileSize");
+                    TFileSize.InnerText = item.TFileSize.ToString();
+
+                    copyFile.AppendChild(listID);
+                    copyFile.AppendChild(SrcFile);
+                    copyFile.AppendChild(SrcLastTime);
+                    copyFile.AppendChild(SrcFileSize);
+                    copyFile.AppendChild(TargetFile);
+                    copyFile.AppendChild(TLastTime);
+                    copyFile.AppendChild(TFileSize);
 
                     xmlRoot.AppendChild(copyFile);
                 }
@@ -351,7 +362,7 @@ namespace PCopy
 
             try
             {
-                this.dataGridView1.Rows.Clear();
+                this.copyFileList.Clear();
 
                 XmlDocument xml = new XmlDocument();
 
@@ -369,15 +380,20 @@ namespace PCopy
 
                 foreach (XmlNode node in xmlRoot.ChildNodes)
                 {
-                    this.dataGridView1.Rows.Add();
+                    CopyFileModel copyFile = new CopyFileModel();
 
-                    this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[0].Value = Path.Combine(exe_path, node["filename"].InnerText);
-                    this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[1].Value = node["offset"].InnerText;
-                    this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[2].Value = node["fillvalue"].InnerText;
-                    this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[3].Value = node["fillsize"].InnerText;
+                    copyFile.listID = int.Parse(node["listID"].InnerText);
+                    copyFile.SrcFile = node["SrcFile"].InnerText;
+                    copyFile.SrcLastTime = node["SrcLastTime"].InnerText;
+                    copyFile.SrcFileSize = long.Parse(node["SrcFileSize"].InnerText);
+                    copyFile.TargetFile = node["TargetFile"].InnerText;
+                    copyFile.TLastTime = node["TLastTime"].InnerText;
+                    copyFile.TFileSize = long.Parse(node["TFileSize"].InnerText);
+
+                    copyFileList.Add(copyFile);
                 }
-
-                // this.txtBoxDestFile.Text = Path.Combine(exe_path, string.Format("bin_release_{0}.bin", DateTime.Now.ToString("yyyyMMddHHmmss")));
+                
+                this.bindingSourceDGV1.ResetBindings(false);
             }
             catch (Exception ex)
             {
@@ -456,17 +472,17 @@ namespace PCopy
 
         private void MainFrm_Shown(object sender, EventArgs e)
         {
-            copyFileList.Add(new CopyFileModel()
-            {
-                listID = 1,
-                SrcFile = "C:\\1.bin",
-                SrcLastTime = "2018-01-01 00:00:00",
-                SrcFileSize = 1024,
-                TargetFile = "C:\\2.bin",
-                TLastTime = "2018-01-01 00:00:00",
-                TFileSize = 1024
-            }
-                );
+            //copyFileList.Add(new CopyFileModel()
+            //{
+            //    listID = 1,
+            //    SrcFile = "C:\\1.bin",
+            //    SrcLastTime = "2018-01-01 00:00:00",
+            //    SrcFileSize = 1024,
+            //    TargetFile = "C:\\2.bin",
+            //    TLastTime = "2018-01-01 00:00:00",
+            //    TFileSize = 1024
+            //}
+            //    );
             bindingSourceDGV1.DataSource = this.copyFileList;
             this.dataGridView1.DataSource = bindingSourceDGV1;
             bindingSourceDGV1.ResetBindings(false);
