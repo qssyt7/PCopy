@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -190,6 +186,8 @@ namespace PCopy
 
             this.copyFileList.Add(copyFileModel);
             this.bindingSourceDGV1.ResetBindings(false);
+
+            MessageBox.Show("增加成功");
         }
 
         /// <summary>
@@ -207,7 +205,15 @@ namespace PCopy
             }
 
             this.copyFileList.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
+
+            for (int i = 1; i <= this.copyFileList.Count; i++)
+            {
+                this.copyFileList[i - 1].listID = i;
+            }
+
             this.bindingSourceDGV1.ResetBindings(false);
+
+            MessageBox.Show("删除成功");
         }
 
         /// <summary>
@@ -251,6 +257,8 @@ namespace PCopy
             }
 
             this.bindingSourceDGV1.ResetBindings(false);
+
+            MessageBox.Show("修改成功");
         }
 
         /// <summary>
@@ -392,7 +400,7 @@ namespace PCopy
 
                     copyFileList.Add(copyFile);
                 }
-                
+
                 this.bindingSourceDGV1.ResetBindings(false);
             }
             catch (Exception ex)
@@ -418,6 +426,43 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnST_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (this.dataGridView1.Rows.Count <= 0)
+                { 
+                                        MessageBox.Show("请先添加文件", "提示");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(currentCopyFile.TargetFile))
+                {
+                    MessageBox.Show("请先编辑复制文件的对应列表!!!");
+                    return;
+                }
+
+                if (File.Exists(currentCopyFile.TargetFile))
+                {
+                    File.Delete(currentCopyFile.TargetFile);
+                }
+
+                File.Copy(currentCopyFile.SrcFile, currentCopyFile.TargetFile);
+
+                currentCopyFile.TLastTime = File.GetLastWriteTime(currentCopyFile.TargetFile).ToString();
+                currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
+
+                currentCopyFile.Status = "已复制";
+
+                MessageBox.Show("复制成功", "提示");
+            }
+            catch (Exception ex)
+            {
+                currentCopyFile.Status = "复制失败";
+                MessageBox.Show(ex.Message.ToString(), "异常");
+            }
+            finally
+            {
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -427,6 +472,41 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnTS_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (this.dataGridView1.Rows.Count <= 0)
+                {
+                    MessageBox.Show("请先添加文件", "提示");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(currentCopyFile.SrcFile))
+                {
+                    MessageBox.Show("请先编辑复制文件的对应列表!!!");
+                    return;
+                }
+                if (File.Exists(currentCopyFile.SrcFile))
+                {
+                    File.Delete(currentCopyFile.SrcFile);
+                }
+
+                File.Copy(currentCopyFile.TargetFile, currentCopyFile.SrcFile);
+                currentCopyFile.Status = "已复制";
+
+                currentCopyFile.SrcLastTime = File.GetLastWriteTime(currentCopyFile.SrcFile).ToString();
+                currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
+
+                MessageBox.Show("复制成功", "提示");
+            }
+            catch (Exception ex)
+            {
+                currentCopyFile.Status = "复制失败";
+                MessageBox.Show(ex.Message.ToString(), "异常");
+            }
+            finally
+            {
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -436,6 +516,59 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnALLST_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+                if (this.dataGridView1.Rows.Count <= 0)
+                {
+                    MessageBox.Show("请先添加文件", "提示");
+                    return;
+                }
+
+                foreach (var item in this.copyFileList)
+                {
+                    if (string.IsNullOrEmpty(item.SrcFile))
+                    {
+                        MessageBox.Show("当前文件信息存在无效信息");
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(item.TargetFile))
+                    {
+                        MessageBox.Show("目标文件信息存在无效信息");
+                        return;
+                    }
+                }
+
+                foreach (var item in this.copyFileList)
+                {
+                    if (File.Exists(item.TargetFile))
+                    {
+                        File.Delete(item.TargetFile);
+                    }
+
+                    currentCopyFile = item;
+
+                    File.Copy(item.TargetFile, item.SrcFile);
+
+                    currentCopyFile.Status = "已复制";
+
+                    currentCopyFile.SrcLastTime = File.GetLastWriteTime(item.SrcFile).ToString();
+                    currentCopyFile.SrcFileSize = new FileInfo(item.SrcFile).Length;
+                }
+
+                MessageBox.Show("复制成功", "提示");
+            }
+            catch (Exception ex)
+            {
+                currentCopyFile.Status = "复制失败";
+
+                MessageBox.Show(ex.Message.ToString(), "异常");
+            }
+            finally
+            {
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -443,6 +576,58 @@ namespace PCopy
         /// </summary>
         private void btnALLTS_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+                if (this.dataGridView1.Rows.Count <= 0)
+                {
+                    MessageBox.Show("请先添加文件", "提示");
+                    return;
+                }
+
+                foreach (var item in this.copyFileList)
+                {
+                    if (string.IsNullOrEmpty(item.SrcFile))
+                    {
+                        MessageBox.Show("当前文件信息存在无效信息");
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(item.TargetFile))
+                    {
+                        MessageBox.Show("目标文件信息存在无效信息");
+                        return;
+                    }
+                }
+
+                foreach (var item in this.copyFileList)
+                {
+                    if (File.Exists(item.SrcFile))
+                    {
+                        File.Delete(item.SrcFile);
+                    }
+
+                    currentCopyFile = item;
+
+                    File.Copy(item.SrcFile, item.TargetFile);
+
+                    currentCopyFile.Status = "已复制";
+
+                    currentCopyFile.TLastTime = File.GetLastWriteTime(item.TargetFile).ToString();
+                    currentCopyFile.TFileSize = new FileInfo(item.TargetFile).Length;
+                }
+
+                MessageBox.Show("复制成功", "提示");
+            }
+            catch (Exception ex)
+            {
+                currentCopyFile.Status = "复制失败";
+                MessageBox.Show(ex.Message.ToString(), "异常");
+            }
+            finally
+            {
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -452,6 +637,36 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnCompare_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.Rows.Count <= 0)
+            {
+                MessageBox.Show("请先添加文件", "提示");
+                return;
+            }
+
+            string cmd = "C:\\Program Files\\BCompare\\BCompare.exe";
+            string arguments = $"\"{currentCopyFile.SrcFile}\" \"{currentCopyFile.TargetFile}\"";
+
+            try
+            {
+                // 打开本地电脑上的对比软件  BCompare.exe 进行对比
+
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = cmd,
+                    Arguments = arguments,
+                    UseShellExecute = true // 使用系统外壳启动，以显示 Beyond Compare 的窗口
+                };
+
+
+                Process.Start(startInfo);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("对比软件路径:{0}\r\n错误信息{1}", cmd, ex.Message.ToString()));
+            }
+
         }
 
         /// <summary>
@@ -495,22 +710,27 @@ namespace PCopy
         /// <param name="e"></param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.Rows.Count <= 0)
+            {
+                MessageBox.Show("请先添加文件", "提示");
+                return;
+            }
+
             if (File.Exists(currentCopyFile.SrcFile))
             {
                 currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
-                currentCopyFile.SrcLastTime = new FileInfo(currentCopyFile.SrcFile).LastWriteTime.ToString();
+                currentCopyFile.SrcLastTime = File.GetLastWriteTime(currentCopyFile.SrcFile).ToString();
             }
             else
             {
                 currentCopyFile.SrcFileSize = 0;
                 currentCopyFile.SrcLastTime = string.Empty;
-
             }
 
             if (File.Exists(currentCopyFile.TargetFile))
             {
                 currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
-                currentCopyFile.TLastTime = new FileInfo(currentCopyFile.TargetFile).LastWriteTime.ToString();
+                currentCopyFile.TLastTime = File.GetLastWriteTime(currentCopyFile.TargetFile).ToString();
             }
             else
             {
@@ -536,6 +756,17 @@ namespace PCopy
                     {
                         item.TargetFile = Path.Combine(targetPath, Path.GetFileName(item.SrcFile));
                     }
+
+                    if (File.Exists(item.TargetFile))
+                    {
+                        item.TFileSize = new FileInfo(item.TargetFile).Length;
+                        item.TLastTime = File.GetLastWriteTime(item.TargetFile).ToString();
+                    }
+                    else
+                    {
+                        item.TFileSize = 0;
+                        item.TLastTime = string.Empty;
+                    }
                 }
 
                 this.bindingSourceDGV1.ResetBindings(false);
@@ -544,6 +775,71 @@ namespace PCopy
             {
                 this.txtBoxTargetPath.Text = string.Empty;
             }
+        }
+
+        private void btnOpenDirectorySrc_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtBoxSrcFile.Text))
+            {
+                MessageBox.Show("请先选择源文件路径");
+                return;
+            }
+
+            // 获取文件夹路径
+            string filePath = Path.GetDirectoryName(this.txtBoxSrcFile.Text);
+
+            // 判断路径是否存在
+            if (!Directory.Exists(filePath))
+            {
+                MessageBox.Show("目标文件夹不存在");
+                return;
+            }
+
+            // 打开文件夹
+            Process.Start(filePath);
+        }
+
+        private void btnOpenDirectoryTarget_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtBoxTargetFile.Text))
+            {
+                MessageBox.Show("请先选择目标文件路径");
+                return;
+            }
+
+            // 获取文件夹路径
+            string filePath = Path.GetDirectoryName(this.txtBoxTargetFile.Text);
+
+            // 判断路径是否存在
+            if (!Directory.Exists(filePath))
+            {
+                MessageBox.Show("目标文件夹不存在");
+                return;
+            }
+
+            // 打开文件夹
+            Process.Start(filePath);
+        }
+
+        /// <summary>
+        /// 清空 复制状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearStatus_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.Rows.Count <= 0)
+            {
+                MessageBox.Show("请先添加文件", "提示");
+                return;
+            }
+
+            foreach (var item in this.copyFileList)
+            {
+                item.Status = string.Empty;
+            }
+
+            this.bindingSourceDGV1.ResetBindings(false);
         }
     }
 }

@@ -43,5 +43,10 @@ namespace PCopy
         /// </summary>
         public long TFileSize { get; set; }
 
+        /// <summary>
+        /// 复制状态
+        /// </summary>
+        public string Status { get; set; }
+
     }
 }
