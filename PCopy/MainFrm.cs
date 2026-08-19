@@ -101,10 +101,14 @@ namespace PCopy
         private void btnSrcFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openDlg = new OpenFileDialog();
-            openDlg.ShowDialog();
+            if (openDlg.ShowDialog() == DialogResult.OK)
+            {
+                currentCopyFile.SrcFile = openDlg.FileName;
+                currentCopyFile.SrcLastTime = File.GetLastWriteTime(currentCopyFile.SrcFile).ToString();
+                currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
 
-            this.txtBoxSrcFile.Text = openDlg.FileName;
-            this.txtBoxTargetFile.Text = Path.GetFileName(openDlg.FileName);
+                this.bindingSourceDGV1.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -156,26 +160,34 @@ namespace PCopy
                 return;
             }
 
-            if (File.Exists(this.txtBoxSrcFile.Text.Trim()) == false)
-            {
-                MessageBox.Show("[当前文件]不存在!!!");
-                return;
-            }
+            //if (File.Exists(this.txtBoxSrcFile.Text.Trim()) == false)
+            //{
+            //    MessageBox.Show("[当前文件]不存在!!!");
+            //    return;
+            //}
 
-            if (File.Exists(this.txtBoxTargetFile.Text.Trim()) == false)
-            {
-                MessageBox.Show("[目标文件]不存在!!!");
-                return;
-            }
+            //if (File.Exists(this.txtBoxTargetFile.Text.Trim()) == false)
+            //{
+            //    MessageBox.Show("[目标文件]不存在!!!");
+            //    return;
+            //}
 
             CopyFileModel copyFileModel = new CopyFileModel();
             copyFileModel.listID = this.dataGridView1.Rows.Count + 1;
             copyFileModel.SrcFile = this.txtBoxSrcFile.Text.Trim();
-            copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
-            copyFileModel.SrcFileSize = new FileInfo(copyFileModel.SrcFile).Length;
+
+            if (File.Exists(copyFileModel.SrcFile))
+            {
+                copyFileModel.SrcLastTime = File.GetLastWriteTime(copyFileModel.SrcFile).ToString();
+                copyFileModel.SrcFileSize = new FileInfo(copyFileModel.SrcFile).Length;
+            }
             copyFileModel.TargetFile = this.txtBoxTargetFile.Text.Trim();
-            copyFileModel.TLastTime = File.GetLastWriteTime(copyFileModel.TargetFile).ToString();
-            copyFileModel.TFileSize = new FileInfo(copyFileModel.TargetFile).Length;
+            if (File.Exists(copyFileModel.TargetFile))
+            {
+                copyFileModel.TLastTime = File.GetLastWriteTime(copyFileModel.TargetFile).ToString();
+                copyFileModel.TFileSize = new FileInfo(copyFileModel.TargetFile).Length;
+            }
+
             this.copyFileList.Add(copyFileModel);
             this.bindingSourceDGV1.ResetBindings(false);
         }
@@ -193,6 +205,9 @@ namespace PCopy
 
                 return;
             }
+
+            this.copyFileList.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
+            this.bindingSourceDGV1.ResetBindings(false);
         }
 
         /// <summary>
@@ -208,6 +223,34 @@ namespace PCopy
 
                 return;
             }
+
+            if (this.txtBoxSrcFile.Text.Trim().Length <= 0)
+            {
+                MessageBox.Show("请指定[源文件]路径!!!");
+                return;
+            }
+
+            if (this.txtBoxSrcFile.Text.Trim().Length <= 0)
+            {
+                MessageBox.Show("请指定[复制到]路径!!!");
+                return;
+            }
+
+            currentCopyFile.SrcFile = this.txtBoxSrcFile.Text.Trim();
+            if (File.Exists(currentCopyFile.SrcFile))
+            {
+                currentCopyFile.SrcLastTime = File.GetLastWriteTime(currentCopyFile.SrcFile).ToString();
+                currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
+            }
+
+            currentCopyFile.TargetFile = this.txtBoxTargetFile.Text.Trim();
+            if (File.Exists(currentCopyFile.TargetFile))
+            {
+                currentCopyFile.TLastTime = File.GetLastWriteTime(currentCopyFile.TargetFile).ToString();
+                currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
+            }
+
+            this.bindingSourceDGV1.ResetBindings(false);
         }
 
         /// <summary>
@@ -441,13 +484,25 @@ namespace PCopy
                 currentCopyFile.SrcFileSize = new FileInfo(currentCopyFile.SrcFile).Length;
                 currentCopyFile.SrcLastTime = new FileInfo(currentCopyFile.SrcFile).LastWriteTime.ToString();
             }
+            else
+            {
+                currentCopyFile.SrcFileSize = 0;
+                currentCopyFile.SrcLastTime = string.Empty;
+
+            }
 
             if (File.Exists(currentCopyFile.TargetFile))
             {
                 currentCopyFile.TFileSize = new FileInfo(currentCopyFile.TargetFile).Length;
                 currentCopyFile.TLastTime = new FileInfo(currentCopyFile.TargetFile).LastWriteTime.ToString();
             }
+            else
+            {
+                currentCopyFile.TFileSize = 0;
+                currentCopyFile.TLastTime = string.Empty;
+            }
 
+            this.bindingSourceDGV1.ResetBindings(false);
         }
 
         private void btnTargetPath_Click(object sender, EventArgs e)
