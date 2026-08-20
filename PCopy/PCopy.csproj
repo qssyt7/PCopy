@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBoxPCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBoxPCopy.Designer.cs">
+      <DependentUpon>AboutBoxPCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="CopyFileModel.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBoxPCopy.resx">
+      <DependentUpon>AboutBoxPCopy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>

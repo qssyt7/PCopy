@@ -29,22 +29,33 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrcLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSrcFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBoxSrcFile = new System.Windows.Forms.TextBox();
             this.btnSrcFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOpenDirectorySrc = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSaveXml = new System.Windows.Forms.Button();
             this.btnReadXml = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnOpenDirectoryTarget = new System.Windows.Forms.Button();
             this.txtBoxTargetFile = new System.Windows.Forms.TextBox();
             this.btnCopyTo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnRootPath = new System.Windows.Forms.Button();
             this.txtBoxRootPath = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnClearStatus = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnCompare = new System.Windows.Forms.Button();
             this.btnALLTS = new System.Windows.Forms.Button();
@@ -54,17 +65,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnTargetPath = new System.Windows.Forms.Button();
             this.txtBoxTargetPath = new System.Windows.Forms.TextBox();
-            this.btnOpenDirectorySrc = new System.Windows.Forms.Button();
-            this.btnOpenDirectoryTarget = new System.Windows.Forms.Button();
-            this.ColumnFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrcLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSrcFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTLastTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClearStatus = new System.Windows.Forms.Button();
+            this.btnAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -100,6 +101,79 @@
             this.dataGridView1.Size = new System.Drawing.Size(789, 675);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // ColumnFile
+            // 
+            this.ColumnFile.DataPropertyName = "ListID";
+            this.ColumnFile.Frozen = true;
+            this.ColumnFile.HeaderText = "序号";
+            this.ColumnFile.MinimumWidth = 10;
+            this.ColumnFile.Name = "ColumnFile";
+            this.ColumnFile.ReadOnly = true;
+            this.ColumnFile.Width = 60;
+            // 
+            // ColumnSrc
+            // 
+            this.ColumnSrc.DataPropertyName = "SrcFile";
+            this.ColumnSrc.Frozen = true;
+            this.ColumnSrc.HeaderText = "当前文件";
+            this.ColumnSrc.MinimumWidth = 10;
+            this.ColumnSrc.Name = "ColumnSrc";
+            this.ColumnSrc.ReadOnly = true;
+            this.ColumnSrc.Width = 120;
+            // 
+            // ColumnSrcLastTime
+            // 
+            this.ColumnSrcLastTime.DataPropertyName = "SrcLastTime";
+            this.ColumnSrcLastTime.Frozen = true;
+            this.ColumnSrcLastTime.HeaderText = "S最后时间";
+            this.ColumnSrcLastTime.MinimumWidth = 10;
+            this.ColumnSrcLastTime.Name = "ColumnSrcLastTime";
+            this.ColumnSrcLastTime.ReadOnly = true;
+            // 
+            // ColumnSrcFileSize
+            // 
+            this.ColumnSrcFileSize.DataPropertyName = "SrcFileSize";
+            this.ColumnSrcFileSize.Frozen = true;
+            this.ColumnSrcFileSize.HeaderText = "S大小";
+            this.ColumnSrcFileSize.MinimumWidth = 10;
+            this.ColumnSrcFileSize.Name = "ColumnSrcFileSize";
+            this.ColumnSrcFileSize.ReadOnly = true;
+            this.ColumnSrcFileSize.Width = 80;
+            // 
+            // ColumnTarget
+            // 
+            this.ColumnTarget.DataPropertyName = "TargetFile";
+            this.ColumnTarget.Frozen = true;
+            this.ColumnTarget.HeaderText = "目标文件";
+            this.ColumnTarget.MinimumWidth = 10;
+            this.ColumnTarget.Name = "ColumnTarget";
+            this.ColumnTarget.ReadOnly = true;
+            this.ColumnTarget.Width = 120;
+            // 
+            // ColumnTLastTime
+            // 
+            this.ColumnTLastTime.DataPropertyName = "TLastTime";
+            this.ColumnTLastTime.HeaderText = "T最后时间";
+            this.ColumnTLastTime.MinimumWidth = 10;
+            this.ColumnTLastTime.Name = "ColumnTLastTime";
+            this.ColumnTLastTime.ReadOnly = true;
+            // 
+            // ColumnTFileSize
+            // 
+            this.ColumnTFileSize.DataPropertyName = "TFileSize";
+            this.ColumnTFileSize.HeaderText = "T大小";
+            this.ColumnTFileSize.MinimumWidth = 10;
+            this.ColumnTFileSize.Name = "ColumnTFileSize";
+            this.ColumnTFileSize.ReadOnly = true;
+            this.ColumnTFileSize.Width = 80;
+            // 
+            // ColumnStatus
+            // 
+            this.ColumnStatus.DataPropertyName = "Status";
+            this.ColumnStatus.HeaderText = "状态";
+            this.ColumnStatus.Name = "ColumnStatus";
+            this.ColumnStatus.ReadOnly = true;
             // 
             // txtBoxSrcFile
             // 
@@ -140,6 +214,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "当前文件";
+            // 
+            // btnOpenDirectorySrc
+            // 
+            this.btnOpenDirectorySrc.Location = new System.Drawing.Point(31, 94);
+            this.btnOpenDirectorySrc.Name = "btnOpenDirectorySrc";
+            this.btnOpenDirectorySrc.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenDirectorySrc.TabIndex = 5;
+            this.btnOpenDirectorySrc.Text = "打开目录";
+            this.btnOpenDirectorySrc.UseVisualStyleBackColor = true;
+            this.btnOpenDirectorySrc.Click += new System.EventHandler(this.btnOpenDirectorySrc_Click);
             // 
             // btnEdit
             // 
@@ -203,6 +287,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "目标文件";
             // 
+            // btnOpenDirectoryTarget
+            // 
+            this.btnOpenDirectoryTarget.Location = new System.Drawing.Point(31, 86);
+            this.btnOpenDirectoryTarget.Name = "btnOpenDirectoryTarget";
+            this.btnOpenDirectoryTarget.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenDirectoryTarget.TabIndex = 9;
+            this.btnOpenDirectoryTarget.Text = "打开目录";
+            this.btnOpenDirectoryTarget.UseVisualStyleBackColor = true;
+            this.btnOpenDirectoryTarget.Click += new System.EventHandler(this.btnOpenDirectoryTarget_Click);
+            // 
             // txtBoxTargetFile
             // 
             this.txtBoxTargetFile.Location = new System.Drawing.Point(8, 18);
@@ -253,6 +347,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnAbout);
             this.groupBox4.Controls.Add(this.btnClearStatus);
             this.groupBox4.Controls.Add(this.btnRefresh);
             this.groupBox4.Controls.Add(this.btnCompare);
@@ -266,6 +361,16 @@
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "复制";
+            // 
+            // btnClearStatus
+            // 
+            this.btnClearStatus.Location = new System.Drawing.Point(119, 100);
+            this.btnClearStatus.Name = "btnClearStatus";
+            this.btnClearStatus.Size = new System.Drawing.Size(75, 23);
+            this.btnClearStatus.TabIndex = 6;
+            this.btnClearStatus.Text = "清空状态";
+            this.btnClearStatus.UseVisualStyleBackColor = true;
+            this.btnClearStatus.Click += new System.EventHandler(this.btnClearStatus_Click);
             // 
             // btnRefresh
             // 
@@ -357,108 +462,15 @@
             this.txtBoxTargetPath.Size = new System.Drawing.Size(204, 43);
             this.txtBoxTargetPath.TabIndex = 11;
             // 
-            // btnOpenDirectorySrc
+            // btnAbout
             // 
-            this.btnOpenDirectorySrc.Location = new System.Drawing.Point(31, 94);
-            this.btnOpenDirectorySrc.Name = "btnOpenDirectorySrc";
-            this.btnOpenDirectorySrc.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenDirectorySrc.TabIndex = 5;
-            this.btnOpenDirectorySrc.Text = "打开目录";
-            this.btnOpenDirectorySrc.UseVisualStyleBackColor = true;
-            this.btnOpenDirectorySrc.Click += new System.EventHandler(this.btnOpenDirectorySrc_Click);
-            // 
-            // btnOpenDirectoryTarget
-            // 
-            this.btnOpenDirectoryTarget.Location = new System.Drawing.Point(31, 86);
-            this.btnOpenDirectoryTarget.Name = "btnOpenDirectoryTarget";
-            this.btnOpenDirectoryTarget.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenDirectoryTarget.TabIndex = 9;
-            this.btnOpenDirectoryTarget.Text = "打开目录";
-            this.btnOpenDirectoryTarget.UseVisualStyleBackColor = true;
-            this.btnOpenDirectoryTarget.Click += new System.EventHandler(this.btnOpenDirectoryTarget_Click);
-            // 
-            // ColumnFile
-            // 
-            this.ColumnFile.DataPropertyName = "ListID";
-            this.ColumnFile.Frozen = true;
-            this.ColumnFile.HeaderText = "序号";
-            this.ColumnFile.MinimumWidth = 10;
-            this.ColumnFile.Name = "ColumnFile";
-            this.ColumnFile.ReadOnly = true;
-            this.ColumnFile.Width = 60;
-            // 
-            // ColumnSrc
-            // 
-            this.ColumnSrc.DataPropertyName = "SrcFile";
-            this.ColumnSrc.Frozen = true;
-            this.ColumnSrc.HeaderText = "当前文件";
-            this.ColumnSrc.MinimumWidth = 10;
-            this.ColumnSrc.Name = "ColumnSrc";
-            this.ColumnSrc.ReadOnly = true;
-            this.ColumnSrc.Width = 120;
-            // 
-            // ColumnSrcLastTime
-            // 
-            this.ColumnSrcLastTime.DataPropertyName = "SrcLastTime";
-            this.ColumnSrcLastTime.Frozen = true;
-            this.ColumnSrcLastTime.HeaderText = "S最后时间";
-            this.ColumnSrcLastTime.MinimumWidth = 10;
-            this.ColumnSrcLastTime.Name = "ColumnSrcLastTime";
-            this.ColumnSrcLastTime.ReadOnly = true;
-            // 
-            // ColumnSrcFileSize
-            // 
-            this.ColumnSrcFileSize.DataPropertyName = "SrcFileSize";
-            this.ColumnSrcFileSize.Frozen = true;
-            this.ColumnSrcFileSize.HeaderText = "S大小";
-            this.ColumnSrcFileSize.MinimumWidth = 10;
-            this.ColumnSrcFileSize.Name = "ColumnSrcFileSize";
-            this.ColumnSrcFileSize.ReadOnly = true;
-            this.ColumnSrcFileSize.Width = 80;
-            // 
-            // ColumnTarget
-            // 
-            this.ColumnTarget.DataPropertyName = "TargetFile";
-            this.ColumnTarget.Frozen = true;
-            this.ColumnTarget.HeaderText = "目标文件";
-            this.ColumnTarget.MinimumWidth = 10;
-            this.ColumnTarget.Name = "ColumnTarget";
-            this.ColumnTarget.ReadOnly = true;
-            this.ColumnTarget.Width = 120;
-            // 
-            // ColumnTLastTime
-            // 
-            this.ColumnTLastTime.DataPropertyName = "TLastTime";
-            this.ColumnTLastTime.HeaderText = "T最后时间";
-            this.ColumnTLastTime.MinimumWidth = 10;
-            this.ColumnTLastTime.Name = "ColumnTLastTime";
-            this.ColumnTLastTime.ReadOnly = true;
-            // 
-            // ColumnTFileSize
-            // 
-            this.ColumnTFileSize.DataPropertyName = "TFileSize";
-            this.ColumnTFileSize.HeaderText = "T大小";
-            this.ColumnTFileSize.MinimumWidth = 10;
-            this.ColumnTFileSize.Name = "ColumnTFileSize";
-            this.ColumnTFileSize.ReadOnly = true;
-            this.ColumnTFileSize.Width = 80;
-            // 
-            // ColumnStatus
-            // 
-            this.ColumnStatus.DataPropertyName = "Status";
-            this.ColumnStatus.HeaderText = "状态";
-            this.ColumnStatus.Name = "ColumnStatus";
-            this.ColumnStatus.ReadOnly = true;
-            // 
-            // btnClearStatus
-            // 
-            this.btnClearStatus.Location = new System.Drawing.Point(119, 100);
-            this.btnClearStatus.Name = "btnClearStatus";
-            this.btnClearStatus.Size = new System.Drawing.Size(75, 23);
-            this.btnClearStatus.TabIndex = 6;
-            this.btnClearStatus.Text = "清空状态";
-            this.btnClearStatus.UseVisualStyleBackColor = true;
-            this.btnClearStatus.Click += new System.EventHandler(this.btnClearStatus_Click);
+            this.btnAbout.Location = new System.Drawing.Point(19, 100);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
+            this.btnAbout.TabIndex = 7;
+            this.btnAbout.Text = "about";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // MainFrm
             // 
@@ -537,6 +549,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTFileSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
         private System.Windows.Forms.Button btnClearStatus;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 

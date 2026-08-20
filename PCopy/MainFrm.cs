@@ -841,5 +841,13 @@ namespace PCopy
 
             this.bindingSourceDGV1.ResetBindings(false);
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+
+            AboutBoxPCopy box = new AboutBoxPCopy();
+            box.ShowDialog();
+
+        }
     }
 }

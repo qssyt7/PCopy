@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("PCopy")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("文件复制工具")]
+[assembly: AssemblyDescription("文件复制工具是一个程序员工具，用于频繁的、重复的复制发布的多个文件。可以保存复制文件的列表，可以双向复制文件。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PCopy")]
+[assembly: AssemblyProduct("文件复制工具")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
